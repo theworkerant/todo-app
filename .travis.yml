@@ -1,0 +1,13 @@
+language: ruby
+services: 
+  - mysql
+  - redis-server
+rvm:
+  - 2.0.0
+  
+before_script:
+  - mysql -e 'create database vandv_test;'
+  
+script: 
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - bundle exec rspec spec
