@@ -11,7 +11,7 @@
 development:
   adapter: mysql2
   encoding: utf8
-  database: vandv_development
+  database: todo_development
   username: root
   password:
 
@@ -21,6 +21,6 @@ development:
 test:
   adapter: mysql2
   encoding: utf8
-  database: vandv_test
-  username: travis
+  database: todo_test
+  username: root
   password:
