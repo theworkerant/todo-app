@@ -1,0 +1,1 @@
+App.TasksController = Em.ArrayController.extend()

@@ -1,0 +1,3 @@
+ul#tasks
+  each task in controller
+    li= task.title

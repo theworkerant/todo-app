@@ -3,6 +3,7 @@ Todo::Application.routes.draw do
   root "application#app"
   
   resources :tasks
+  get "/users/:id" => "users#show"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

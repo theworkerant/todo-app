@@ -1,26 +1,37 @@
 App.Router.map ->
-  @resource "todos", path: "/"#, ->
+  @resource "tasks", path: "/"
     
-    # @resource "sessions", path: "sessions", ->
-    #   @route "new", {path: "new", queryParams: ["skills_encoded"]}
-    #   @route "session", {path: "/:id", queryParams: ["skills_encoded"]}
+  @resource "login", path: "login"
+  @resource "register", path: "register"
+  
+
+App.AuthenticatedRoute = Ember.Route.extend
+  beforeModel: (transition) ->
+    login = @controllerFor('login')
+    if (!login.get("isAuthenticated"))
+      @redirectToLogin(transition)
       
+  redirectToLogin: (transition) ->
+    loginController = @controllerFor('login')
+    loginController.set('attemptedTransition', transition)
+    @transitionTo('login')
+        
+  actions:
+    error: (reason, transition) ->
+      if (reason.status is 401)
+        @redirectToLogin(transition)
+      else
+        App.generalError(reason, "There was a problem navigating to that page. Please make sure you've entered it correctly and try again.")
       
-App.TodosRoute = Em.Route.extend
+App.RegisterRoute = Ember.Route.extend()
+App.LoginRoute = Ember.Route.extend
+  beforeModel: (transition) ->
+    if (@controllerFor('login').get("isAuthenticated"))
+      @transitionTo('tasks')
+      
+  setupController: (controller, context) ->
+    controller.reset()
+  
+App.TasksRoute = App.AuthenticatedRoute.extend
   model: -> @store.find("task")
-  setupController: (controller, model) ->
-    controller.set "content", model
-    @setupAjax()
-    
-  setupAjax: ->
-    # token = @get("credentials.token")
-    $.ajaxSetup
-      beforeSend: (xhr, settings) -> 
-        # just because the auth_token is a private information
-        if settings.crossDomain then return
-        # if settings.type is "GET" then return
-    
-        # xhr.setRequestHeader('X-AUTHENTICATION-TOKEN', token)
-      
-        csrf_token = $('meta[name="csrf-token"]').attr('content');
-        if csrf_token then xhr.setRequestHeader('X-CSRF-Token', csrf_token)
+  

@@ -1,7 +1,0 @@
-.container
-  .row
-    .col-md-12
-      h1 Todo App!
-      ul#todos
-        each task in controller
-          = task.title

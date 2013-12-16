@@ -1,1 +1,0 @@
-App.TodosController = Em.ArrayController.extend()
