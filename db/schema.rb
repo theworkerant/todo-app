@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(version: 20131213232416) do
 
   create_table "tasks", force: true do |t|
+    t.integer  "user_id"
     t.string   "title"
     t.datetime "due_at"
     t.datetime "completed_at"

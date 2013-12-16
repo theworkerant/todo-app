@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :task do
+    user
     title "Some Important Task"
     due_at Date.tomorrow
     priority "high"

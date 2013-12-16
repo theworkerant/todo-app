@@ -12,5 +12,9 @@ describe Task do
     expect(task).to_not be_valid
   end
   
+  let(:task) { build :task, user: nil }
+  it "must be created with a user" do
+    expect(task).to_not be_valid
+  end  
   
 end
