@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131123151211) do
+ActiveRecord::Schema.define(version: 20131213232416) do
+
+  create_table "tasks", force: true do |t|
+    t.string   "title"
+    t.datetime "due_at"
+    t.datetime "completed_at"
+    t.string   "priority"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

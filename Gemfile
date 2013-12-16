@@ -2,7 +2,6 @@ source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails"
 gem "rails", "4.0.2"
-gem "redis-rails"
 
 # Use mysql as the database for Active Record
 gem "mysql2"

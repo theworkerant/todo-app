@@ -1,6 +1,8 @@
 Todo::Application.routes.draw do
   devise_for :users
   root "application#app"
+  
+  resources :tasks
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

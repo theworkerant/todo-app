@@ -1,14 +1,13 @@
 App.Router.map ->
-  @resource "index", path: "/"#, ->
+  @resource "todos", path: "/"#, ->
     
     # @resource "sessions", path: "sessions", ->
     #   @route "new", {path: "new", queryParams: ["skills_encoded"]}
     #   @route "session", {path: "/:id", queryParams: ["skills_encoded"]}
       
       
-App.IndexRoute = Em.Route.extend
-  # model: -> @store.find("session")
-  # enter: -> @get("pusher").subscribe("sessions")
+App.TodosRoute = Em.Route.extend
+  model: -> @store.find("task")
   setupController: (controller, model) ->
     controller.set "content", model
     @setupAjax()
