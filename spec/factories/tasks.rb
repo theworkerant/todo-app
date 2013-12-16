@@ -2,9 +2,8 @@
 
 FactoryGirl.define do
   factory :task do
-    title "MyString"
-    due_at "2013-12-13 18:24:16"
-    priority 1
-    completed false
+    title "Some Important Task"
+    due_at Date.tomorrow
+    priority "high"
   end
 end
