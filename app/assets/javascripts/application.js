@@ -35,5 +35,3 @@
 //= require_tree ./initializers
 //= require_tree ./components
 //= require_tree ./helpers
-//= require_tree ./views
-

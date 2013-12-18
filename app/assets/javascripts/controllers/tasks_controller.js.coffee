@@ -2,6 +2,7 @@ App.TasksController = Em.ArrayController.extend
 
   sortProperties: ["priorityCode"]
   sortAscending: true
+  
   prioritySorted: Em.computed(-> @get("sortProperties.firstObject") is "priorityCode" ).property("sortProperties")
   dateSorted: Em.computed(-> @get("sortProperties.firstObject") is "due_at" ).property("sortProperties")
   
@@ -23,7 +24,7 @@ App.TasksController = Em.ArrayController.extend
     create: ->
       self = @
       @get("newTask").save().then(
-        (response) -> self.set("newTask", self.store.createRecord("task", {priority: "medium"}))
+        (response) -> self.set("newTask", self.store.createRecord("task", {priority: "medium", due_at: new Date}))
         (response) -> App.generalError("There was a problem with that entry, please make sure everything is filled out correctly.")
       )
   

@@ -36,6 +36,6 @@ App.TasksRoute = App.AuthenticatedRoute.extend
   model: -> @store.find("task")
   setupController: (controller, model) ->
     controller.set "model", model
-    controller.set("newTask", @store.createRecord("task", {priority: "medium"}))
+    controller.set("newTask", @store.createRecord("task", {priority: "medium", due_at: new Date}))
     
   

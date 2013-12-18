@@ -44,5 +44,8 @@ App.TodoItemComponent = Ember.Component.extend
       Ember.run.next -> self.$("input.#{field}-field").focus()
       
     delete: ->
-      @get("task").deleteRecord()
-      @sendAction("action")
+      if window.confirm("Are you sure you want to delete?")
+        @get("task").deleteRecord()
+        @sendAction("action")
+      
+      
