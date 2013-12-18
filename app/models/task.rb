@@ -4,8 +4,8 @@ class Task < ActiveRecord::Base
   validates_presence_of :title, message: "can't be blank"
   validates_presence_of :priority, message: "can't be blank"
   validates :priority, inclusion: { in: %w( high medium low) }
-  validates :due_at, date: {:message => "Must be a valid date"}
-  validates :completed_at, date: {:message => "Must be a valid date"}, if: :complete?
+  validates :due_at, date: {:message => "Must be a valid date"}, allow_blank: true
+  validates :completed_at, date: {:message => "Must be a valid date"}, allow_blank: true
   
   def complete?
     completed_at.present?

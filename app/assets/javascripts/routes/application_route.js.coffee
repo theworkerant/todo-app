@@ -21,7 +21,7 @@ App.AuthenticatedRoute = Ember.Route.extend
       if (reason.status is 401)
         @redirectToLogin(transition)
       else
-        App.generalError(reason, "There was a problem navigating to that page. Please make sure you've entered it correctly and try again.")
+        App.generalError("There was a problem navigating to that page. Please make sure you've entered it correctly and try again.")
       
 App.RegisterRoute = Ember.Route.extend()
 App.LoginRoute = Ember.Route.extend
@@ -36,6 +36,6 @@ App.TasksRoute = App.AuthenticatedRoute.extend
   model: -> @store.find("task")
   setupController: (controller, model) ->
     controller.set "model", model
-    controller.set("newTask", @store.createRecord("task", {priority: "medium", due_at: new Date}))
+    controller.set("newTask", @store.createRecord("task", {priority: "medium", due_at: null}))
     
   

@@ -6,7 +6,7 @@ if editing
         br
     .row
       .col-md-4
-        Ember.TextField valueBinding="dueDate" class="form-control due-field"
+        Ember.TextField valueBinding="dueDate" class="form-control due-field" prompt="MM/DD/YYYY"
         .help-block When is it due? (mm/dd/yyyy)
         
       .col-md-4

@@ -24,7 +24,7 @@ App.TasksController = Em.ArrayController.extend
     create: ->
       self = @
       @get("newTask").save().then(
-        (response) -> self.set("newTask", self.store.createRecord("task", {priority: "medium", due_at: new Date}))
+        (response) -> self.set("newTask", self.store.createRecord("task", {priority: "medium", due_at: null}))
         (response) -> App.generalError("There was a problem with that entry, please make sure everything is filled out correctly.")
       )
   

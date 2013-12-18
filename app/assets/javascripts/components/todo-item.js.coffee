@@ -7,15 +7,13 @@ App.TodoItemComponent = Ember.Component.extend
   .property("task.due_at")
       
   dueDateChange: Em.observer ->
-    unless @get("dueDate")
-      if Em.isEmpty(@get("task.due_at"))
-        @set("dueDate", moment.utc(new Date).format("MM/DD/YYYY"))
-      else
-        @set("dueDate", moment.utc(@get("task.due_at")).format("MM/DD/YYYY"))
-    
     due_date = new Date(@get("dueDate"))
-    @set("task.due_at", due_date) if due_date
+    @set("task.due_at", due_date) if not isNaN(due_date) and Em.isEmpty(@get("dueDate"))
   .observes("dueDate").on("didInsertElement")
+  
+  validDueDate: Em.computed ->
+    Em.isEmpty(@get("dueDate")) or ( !Em.isEmpty(@get("dueDate")) and not isNaN(new Date(@get("dueDate"))) )
+  .property("dueDate")
   
   actions:
     complete: -> 
@@ -28,8 +26,11 @@ App.TodoItemComponent = Ember.Component.extend
         @sendAction("action") if @get("action") isnt "create" and @get("editing") isnt true
         
     done: ->
-      @sendAction("action")
-      @set("editing", false) unless @get("action") is "create"
+      if @get("validDueDate")
+        @sendAction("action")
+        @set("editing", false) unless @get("action") is "create"
+      else
+        App.generalError("That's not a valid date! Please use MM/DD/YYYY format")
 
     doneEditing: ->
       if @get("action") isnt "create"
@@ -48,4 +49,4 @@ App.TodoItemComponent = Ember.Component.extend
         @get("task").deleteRecord()
         @sendAction("action")
       
-      
+    

@@ -57,8 +57,7 @@ describe "Tasks API" do
   ### Bogus entries
   it "create task without due date" do
     post "tasks", {user_token: user.authentication_token, user_email:user.email, task: {title: "Abc123", priority: "high"} }
-    expect(response.response_code).to eq 422
-    expect(json["errors"]["due_at"]).to include "Must be a valid date"
+    expect(response.response_code).to eq 201
   end
   it "create task with a bogus due date" do
     post "tasks", {user_token: user.authentication_token, user_email:user.email, task: {title: "Abc123", priority: "high", due_at: "Bogus!!"} }
@@ -67,7 +66,8 @@ describe "Tasks API" do
   end
   it "create task with a bogus completed date" do
     post "tasks", {user_token: user.authentication_token, user_email:user.email, task: {title: "Abc123", priority: "high", due_at: Date.tomorrow, completed_at: "Bogus!!"} }
-    expect(response.response_code).to eq 201
+    expect(response.response_code).to eq 422
+    expect(json["errors"]["completed_at"]).to include "Must be a valid date"
   end
   
 end
