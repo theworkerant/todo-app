@@ -1,30 +1,58 @@
-.row
-  if editing
-    .col-md-10
-      Ember.TextField action="create" insert-newline="done" class="form-control" valueBinding="task.title" placeholder="What do you need to do?"
-    .col-md-2
-      if task.id
-        button.btn.btn-md.btn-success click="done"
-          |Save
+if editing
+  .editing
+    .row
+      .col-md-12
+        Ember.TextField type="text" action="create" insert-newline="done" class="form-control input-lg title-field" valueBinding="task.title" placeholder="What do you need to do?"
+        br
+    .row
+      .col-md-4
+        Ember.TextField valueBinding="dueDate" class="form-control due-field"
+        .help-block When is it due? (mm/dd/yyyy)
+        
+      .col-md-4
+        if task.id
+          button.btn.btn-lg.btn-success click="done"
+            |Save
+            |&nbsp;
+            span.glyphicon.glyphicon-ok
+          
           |&nbsp;
-          span.glyphicon.glyphicon-ok
-      
-      else
-        button.btn.btn-md.btn-success click="done"
-          |Add
-          |&nbsp;
-          span.glyphicon.glyphicon-plus
-  else
-    .col-md-6 doubleClick="edit"
+        
+          button.btn.btn-lg.btn-danger click="doneEditing"
+            |Cancel
+            |&nbsp;
+            span.glyphicon.glyphicon-remove-circle
+    
+        else
+          button.btn.btn-lg.btn-success click="done"
+            |Add
+            |&nbsp;
+            span.glyphicon.glyphicon-plus
+    
+else
+  .row
+    .col-md-6 doubleClick="edit 'title'"
       h3= task.title
     .col-md-6
       .btn-group
         a.complete-task.btn.btn-lg.btn-success click="complete"
            span.glyphicon.glyphicon-ok
+        a.button.btn.btn-lg.btn-danger click="delete"
+          span.glyphicon.glyphicon-remove
         a.edit-task.btn.btn-lg.btn-primary href="#" click="edit"
           span.glyphicon.glyphicon-edit
+          
       |&nbsp;
+      
       .btn-group
         a class={:set-high-priority :btn :btn-lg :btn-primary task.high:active} click="setPriority 'high'" !!!
         a class={:set-medium-priority :btn :btn-lg :btn-primary task.medium:active} click="setPriority 'medium'" !!
         a class={:set-low-priority :btn :btn-lg :btn-primary task.low:active} click="setPriority 'low'" !
+
+        
+  .row
+    .col-md-12 doubleClick="edit 'due'"
+      small: em
+        |Due: 
+        = dueText
+    

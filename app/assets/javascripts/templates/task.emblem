@@ -1,1 +1,10 @@
-= todo-item task=task editing=false action="save"
+if task.complete
+  h3
+    .btn.btn-xs.btn-primary click="uncomplete"
+      span.glyphicon.glyphicon-backward
+      |&nbsp;Uncomplete
+    |&nbsp;&nbsp;  
+    strike= task.title
+    
+else
+  = todo-item task=task editing=false action="save"

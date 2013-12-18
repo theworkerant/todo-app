@@ -7,6 +7,11 @@
     br
     h2 Things I Should Do...
     hr
+    
+    .btn-group
+      a class={:btn :btn-primary prioritySorted:active} click="sortBy 'priorityCode'" By Priority
+      a class={:btn :btn-primary dateSorted:active} click="sortBy 'due_at'" By Due Date
+    
     ul#tasks
       each task in incompleteTasks
         li= render "task" task
@@ -15,6 +20,8 @@
     
     ul#completed
       each task in completeTasks
-        li
-          h3
-            strike= task.title
+        li= render "task" task
+              
+              
+            
+          

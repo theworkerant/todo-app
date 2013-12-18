@@ -9,3 +9,10 @@ App.Task = DS.Model.extend
   low:    Em.computed(-> @get("priority") is "low").property("priority")
   
   complete: Em.computed(-> @get("completed_at") isnt null).property("completed_at")
+  
+  priorityCode: Em.computed -> 
+    switch @get("priority")
+      when "high" then 1
+      when "medium" then 2
+      when "low" then 3
+  .property("priority")

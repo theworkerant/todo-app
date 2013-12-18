@@ -16,6 +16,6 @@ window.App = Ember.Application.create
   rootElement: "#ember-app"
   LOG_TRANSITIONS: true
   
-window.App.generalError = (error, message) ->
+window.App.generalError = (message) ->
   unless message then message = "We've encountered an unexpected error! Please refresh the page and try again, if the error persists please contact support via the 'Contact Us' link."
   alert(message)
