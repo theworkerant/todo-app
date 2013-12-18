@@ -13,16 +13,9 @@ feature "homepage" do
   end
   
   scenario "I see a particular task" do
-    create(:task, title: "Get Milk")
+    create(:task, title: "Get Milk", user:user)
     login
     expect(page).to have_content("Get Milk")
   end
 
-end
-
-def login
-  visit root_path
-  fill_in "email", with: user.email
-  fill_in "password", with: user.password
-  click_on "Login"
 end

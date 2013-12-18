@@ -19,8 +19,3 @@ feature "register" do
   end
 
 end
-
-def register_page
-  visit root_path
-  click_on "Register Now"
-end

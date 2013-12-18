@@ -1,8 +1,8 @@
 class TaskSerializer < ActiveModel::Serializer  
-  root false
-  embed :ids, include: false
+  embed :ids
   
   attributes :id,
+    :user_id,
     :title,
     :due_at,
     :completed_at,

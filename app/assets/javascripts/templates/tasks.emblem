@@ -1,3 +1,20 @@
-ul#tasks
-  each task in controller
-    li= task.title
+.row
+  .col-md-12
+  
+    = todo-item task=newTask editing=true action="create" creator=true
+
+    br
+    br
+    h2 Things I Should Do...
+    hr
+    ul#tasks
+      each task in incompleteTasks
+        li= render "task" task
+    
+    hr
+    
+    ul#completed
+      each task in completeTasks
+        li
+          h3
+            strike= task.title

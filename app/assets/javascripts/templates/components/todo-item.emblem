@@ -1,0 +1,24 @@
+.row
+  if editing
+    .col-md-10
+      Ember.TextField action="create" focus-out="doneEditing" insert-newline="done" class="form-control" valueBinding="task.title" placeholder="What do you need to do?"
+    .col-md-2
+      unless task.id
+        button.btn.btn-md.btn-success click="done"
+          |Add
+          |&nbsp;
+          span.glyphicon.glyphicon-plus
+  else
+    .col-md-6 doubleClick="edit"
+      h3= task.title
+    .col-md-6
+      .btn-group
+        a.complete-task.btn.btn-lg.btn-success click="complete"
+           span.glyphicon.glyphicon-ok
+        a.edit-task.btn.btn-lg.btn-primary href="#" click="edit"
+          span.glyphicon.glyphicon-edit
+      |&nbsp;
+      .btn-group
+        a class={:set-high-priority :btn :btn-lg :btn-primary task.high:active} click="setPriority 'high'" !!!
+        a class={:set-medium-priority :btn :btn-lg :btn-primary task.medium:active} click="setPriority 'medium'" !!
+        a class={:set-low-priority :btn :btn-lg :btn-primary task.low:active} click="setPriority 'low'" !

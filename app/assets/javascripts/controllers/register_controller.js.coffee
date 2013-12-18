@@ -4,7 +4,7 @@ App.RegisterController = Ember.Controller.extend
   errors: {}
   
   reset: ->
-    this.setProperties
+    @setProperties
       email: ""
       password: ""
       password_confirmation: ""
