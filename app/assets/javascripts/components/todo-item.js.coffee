@@ -5,11 +5,6 @@ App.TodoItemComponent = Ember.Component.extend
     else
       moment.utc(@get("task.due_at")).format("ddd MMM Do, YYYY")
   .property("task.due_at")
-      
-  dueDateChange: Em.observer ->
-    due_date = new Date(@get("dueDate"))
-    @set("task.due_at", due_date) if not isNaN(due_date) and not Em.isEmpty(@get("dueDate"))
-  .observes("dueDate").on("didInsertElement")
   
   validDueDate: Em.computed ->
     Em.isEmpty(@get("dueDate")) or ( !Em.isEmpty(@get("dueDate")) and not isNaN(new Date(@get("dueDate"))) )
@@ -27,6 +22,8 @@ App.TodoItemComponent = Ember.Component.extend
         
     done: ->
       if @get("validDueDate")
+        due_date = new Date(@get("dueDate"))
+        @set("task.due_at", due_date) if not isNaN(due_date) and not Em.isEmpty(@get("dueDate"))
         @sendAction("action")
         @set("editing", false) unless @get("action") is "create"
       else
