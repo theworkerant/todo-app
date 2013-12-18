@@ -10,14 +10,16 @@ App.TodoItemComponent = Ember.Component.extend
         @sendAction("action")
         
     done: ->
+      @set("saving", true)
       if @get("action") is "create"
         @sendAction("action")
       else
         @sendAction("action")
         @set("editing", false)
+        @set("saving", false)
     
     doneEditing: ->
-      unless @get("action") is "create"
+      if @get("action") isnt "create" and not @set("saving")
         @set("editing", false)
         @get("task").rollback()
       
@@ -25,7 +27,3 @@ App.TodoItemComponent = Ember.Component.extend
       @toggleProperty("editing")
       self = this
       Ember.run.next -> self.$("input").focus()
-      
-    delete: ->
-      @get("task").deleteRecord()
-      @get("task").save()

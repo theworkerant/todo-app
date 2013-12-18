@@ -1,9 +1,15 @@
 .row
   if editing
     .col-md-10
-      Ember.TextField action="create" focus-out="doneEditing" insert-newline="done" class="form-control" valueBinding="task.title" placeholder="What do you need to do?"
+      Ember.TextField action="create" blur="doneEditing" insert-newline="done" class="form-control" valueBinding="task.title" placeholder="What do you need to do?"
     .col-md-2
-      unless task.id
+      if task.id
+        button.btn.btn-md.btn-success click="done"
+          |Save
+          |&nbsp;
+          span.glyphicon.glyphicon-ok
+      
+      else
         button.btn.btn-md.btn-success click="done"
           |Add
           |&nbsp;
