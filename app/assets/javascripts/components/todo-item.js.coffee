@@ -8,7 +8,7 @@ App.TodoItemComponent = Ember.Component.extend
       
   dueDateChange: Em.observer ->
     due_date = new Date(@get("dueDate"))
-    @set("task.due_at", due_date) if not isNaN(due_date) and Em.isEmpty(@get("dueDate"))
+    @set("task.due_at", due_date) if not isNaN(due_date) and not Em.isEmpty(@get("dueDate"))
   .observes("dueDate").on("didInsertElement")
   
   validDueDate: Em.computed ->
