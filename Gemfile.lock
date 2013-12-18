@@ -136,6 +136,7 @@ GEM
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     orm_adapter (0.5.0)
+    pg (0.17.0)
     phantomjs (1.9.2.0)
     polyglot (0.3.3)
     pry (0.9.12.4)
@@ -257,6 +258,7 @@ DEPENDENCIES
   factory_girl_rails
   guard-rspec
   mysql2
+  pg
   pry
   rails (= 4.0.2)
   rspec-rails
