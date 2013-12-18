@@ -8,7 +8,7 @@
       if loggedIn
         br
         ul
-          li: small Use the API by providing the keys "user_email" and  "user_token" with the values displayed below on each request
+          li: small Use the API by providing the keys "user_email" and  "user_token" with the values displayed below for each request. The resource url is "/task"
           li 
             strong email: 
             = user.email
