@@ -20,8 +20,6 @@ module Todo
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
     
     # Adding Webfonts to the Asset Pipeline
-    config.assets.enabled = true
-    config.assets.initialize_on_precompile = false
     config.assets.precompile << Proc.new { |path|
       if path =~ /\.(eot|svg|ttf|woff)\z/
         true
