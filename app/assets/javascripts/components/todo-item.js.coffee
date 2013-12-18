@@ -10,16 +10,14 @@ App.TodoItemComponent = Ember.Component.extend
         @sendAction("action")
         
     done: ->
-      @set("saving", true)
       if @get("action") is "create"
         @sendAction("action")
       else
         @sendAction("action")
         @set("editing", false)
-        @set("saving", false)
-    
+
     doneEditing: ->
-      if @get("action") isnt "create" and not @set("saving")
+      if @get("action") isnt "create"
         @set("editing", false)
         @get("task").rollback()
       
