@@ -4,7 +4,6 @@ feature "Tasks" do
   
   let(:user) { create :user }
   before(:each) do
-    Capybara.current_driver = :selenium
     login
     expect(page).to have_content "Things I Should Do"
   end
@@ -27,10 +26,10 @@ feature "Tasks" do
   end
   scenario "change priority" do
     add_task("Medium priority")
-    expect(page.first(".set-medium-priority.active")).to_not be nil
+    expect(page.first(".set-medium-priority.active")).to_not eq nil
     first(".set-high-priority").click
-    expect(page.first(".set-medum-priority.active")).to be nil
-    expect(page.first(".set-high-priority.active")).to_not be nil
+    expect(page.first(".set-medum-priority.active")).to eq nil
+    expect(page.first(".set-high-priority.active")).to_not eq nil
   end
   scenario "delete task when no title entered" do
     add_task("Erase me")

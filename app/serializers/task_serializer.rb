@@ -6,6 +6,10 @@ class TaskSerializer < ActiveModel::Serializer
     :title,
     :due_at,
     :completed_at,
+    :complete,
     :priority
     
+  def complete
+    object.complete?
+  end
 end
